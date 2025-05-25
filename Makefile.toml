@@ -189,6 +189,11 @@ extend = "set-env-docker"
 command = "docker"
 args = ["compose", "down", "-v"]
 
+[tasks.compose-ps]
+extend = "set-env-docker"
+command = "docker"
+args = ["compose", "ps", "-a"]
+
 
 [tasks.create-hash]
 script_runner = "@rust"
