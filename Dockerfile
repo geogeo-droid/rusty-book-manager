@@ -1,4 +1,5 @@
-FROM rust:1.78-slim-bookworm AS builder
+# FROM rust:1.78-slim-bookworm AS builder
+FROM rust:1.88-slim-bookworm AS builder
 WORKDIR /app
 
 ARG DATABASE_URL
