@@ -26,9 +26,15 @@ services:
       - postgres
 
   redis:
-    image: redis:alpine
+    image: grokzen/redis-cluster:6.2.8
     ports:
-      - ${REDIS_PORT_OUTER}:${REDIS_PORT_INNER}
+      - "6379-6383:6379-6383"
+    environment:
+      - "INITIAL_PORT=6379"
+      - "REDIS_CLUSTER_IP=0.0.0.0"
+      - "IP=0.0.0.0"
+      - "BIND_ADDRESS=0.0.0.0"
+      - 'PROTECTED_MODE=false'
 
   postgres:
     image: postgres:15
