@@ -34,6 +34,17 @@ JAEGER_HOST = "localhost"
 JAEGER_PORT = 6831
 
 
+[tasks.set-env-ecr.env]
+
+
+[tasks.ecr-build]
+extend = "set-env-ecr"
+command = "docker"
+args = [
+  "compose", "build", "app",
+  "--build-arg", "BUILDKIT_INLINE_CACHE=1", "${@}"
+]
+
 [tasks.before-build]
 run_task = [
     { name = [
@@ -56,6 +67,11 @@ extend = "set-env-local"
 dependencies = ["before-build"]
 command = "cargo"
 args = ["run", "${@}"]
+
+[tasks.run-production]
+extend = "set-env-local"
+dependencies = ["before-build"]
+command = "target/release/app"
 
 [tasks.run-in-docker]
 extend = "set-env-docker"
