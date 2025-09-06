@@ -1,4 +1,4 @@
-use std::net::{Ipv4Addr, SocketAddr};
+use std::net::{IpAddr, Ipv4Addr, SocketAddr};
 use std::sync::Arc;
 
 use adapter::database::connect_database_with;
@@ -81,7 +81,8 @@ async fn bootstrap() -> Result<()> {
         .layer(cors())
         .with_state(registry);
 
-    let addr = SocketAddr::new(Ipv4Addr::LOCALHOST.into(), 8080);
+    // let addr = SocketAddr::new(Ipv4Addr::LOCALHOST.into(), 8080);
+    let addr = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), 8080);
     let listener = TcpListener::bind(addr).await?;
     tracing::info!("Listening on {}", addr);
     axum::serve(listener, app)

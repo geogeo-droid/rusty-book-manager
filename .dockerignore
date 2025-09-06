@@ -1,0 +1,17 @@
+# この行はコメント
+
+# root以下のあらゆるサブディレクトリ内でtempで始まる名前やファイルの除外
+# ex. /somedir/temporary.txt, /somedir/tempを除外
+*/temp*
+
+# rootから2階層以下のサブディレクトリ内で、 temp で始まる名前のファイルやディレクトリを除外
+# ex. /somedir/subdir/temporary.txt を除外
+*/*/temp*
+
+# ルートディレクトリ内でtempと1文字が一致する名前のファイルやディレクトリを除外
+# ex. /tempa,/tembを除外
+temp?
+
+target?
+
+target
