@@ -3,7 +3,7 @@ default_to_workspace = false
 
 [env]
 HOST = "0.0.0.0"
-PORT = 8080
+PORT = 18080
 DATABASE_USERNAME = "app"
 DATABASE_PASSWORD = "passwd"
 DATABASE_NAME = "app"

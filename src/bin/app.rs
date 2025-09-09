@@ -82,7 +82,7 @@ async fn bootstrap() -> Result<()> {
         .with_state(registry);
 
     // let addr = SocketAddr::new(Ipv4Addr::LOCALHOST.into(), 8080);
-    let addr = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), 8080);
+    let addr = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), 18080);
     let listener = TcpListener::bind(addr).await?;
     tracing::info!("Listening on {}", addr);
     axum::serve(listener, app)
