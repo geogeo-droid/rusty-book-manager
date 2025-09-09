@@ -40,17 +40,17 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-    # appをdocker build する場合。
-    # image: redis:latest
-    # ports:
-    #   - "16379:6379"
-    # healthcheck:
-    #   test: ["CMD", "redis-cli", "ping"] # RedisへのPINGコマンドを実行
-    #   interval: 5s # 5秒ごとに実行
-    #   timeout: 2s  # 2秒でコマンドのタイムアウト
-    #   retries: 3   # 3回連続で失敗したら不健康と判断
-    #   start_period: 10s # 起動後最初のヘルスチェック開始までの猶予期間
-
+  # appをdocker build する場合。
+  # redis:
+  #   image: redis:latest
+  #   ports:
+  #     - "26379:6379"
+  #   healthcheck:
+  #     test: ["CMD", "redis-cli", "ping"] # RedisへのPINGコマンドを実行
+  #     interval: 5s # 5秒ごとに実行
+  #     timeout: 2s  # 2秒でコマンドのタイムアウト
+  #     retries: 3   # 3回連続で失敗したら不健康と判断
+  #     start_period: 10s # 起動後最初のヘルスチェック開始までの猶予期間
 
   postgres:
     image: postgres:15

@@ -3,10 +3,12 @@ pub mod model;
 use self::model::{RedisKey, RedisValue};
 use redis::cluster::ClusterClient;
 use redis::AsyncCommands;
+// use redis::Client;
 use shared::{config::RedisConfig, error::AppResult};
 
 pub struct RedisClient {
     client: ClusterClient,
+    // client: Client,
 }
 
 impl RedisClient {
@@ -15,6 +17,11 @@ impl RedisClient {
         let client = ClusterClient::new(nodes).unwrap();
         Ok(Self { client })
     }
+
+    // pub fn new(config: &RedisConfig) -> AppResult<Self> {
+    //     let client = Client::open(format!("redis://{}:{}", config.host, config.port))?;
+    //     Ok(Self { client })
+    // }
 
     pub async fn set_ex<T: RedisKey>(&self, key: &T, value: &T::Value, ttl: u64) -> AppResult<()> {
         let mut conn = self.client.get_async_connection().await?;
