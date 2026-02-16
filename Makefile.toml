@@ -18,7 +18,7 @@ AUTH_TOKEN_TTL = 86400
 DATABASE_HOST = "postgres"
 DATABASE_PORT = "${DATABASE_PORT_INNER}"
 DATABASE_URL = "postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?user=${DATABASE_USERNAME}&password=${DATABASE_PASSWORD}"
-REDIS_HOST = "redis"
+REDIS_HOST = "redis-cluster"
 REDIS_PORT = "${REDIS_PORT_INNER}"
 JAEGER_HOST = "jaeger"
 JAEGER_PORT = 6831
@@ -77,7 +77,7 @@ command = "target/release/app"
 extend = "set-env-docker"
 dependencies = ["before-build", "compose-build-app"]
 command = "docker"
-args = ["compose", "up", "-d", "app"]
+args = ["compose", "up", "--scale", "redis-cluster=6", "-d", "app"]
 
 [tasks.logs]
 extend = "set-env-docker"
